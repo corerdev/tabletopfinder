@@ -1,0 +1,1520 @@
+/*  ---------------------------------------------------------------------------------------------------
+   ---------------                 Página principal                                    ---------------
+   ---------------------------------------------------------------------------------------------------*/
+
+/* ================================
+   Estilos Base
+=============================== */
+body {
+    background-color: #f5f5dc; /* Beige */
+    color: #4d2c19; /* Marrón oscuro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ================================
+     Panel de Notificaciones
+  =============================== */
+  #notificaciones-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4d2c19; /* Fondo marrón oscuro */
+    color: #f5f5dc; /* Texto beige */
+    padding: 10px 15px;
+    border: 2px solid #d2691e; /* Detalle en naranja dorado */
+    border-radius: 5px;
+    z-index: 1000;
+    display: none; /* Se muestra dinámicamente */
+    font-size: 14px;
+  }
+  
+  #notificaciones-alert a {
+    color: #d2691e;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  
+  #notificaciones-alert a:hover {
+    text-decoration: underline;
+  }
+  
+  #close-notificaciones {
+    background-color: transparent;
+    border: none;
+    color: #f5f5dc;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  /* ================================
+     Menú
+  =============================== */
+  .dropdown-menu-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-menu-container button {
+    font-size: 1.5rem;
+    font-family: Almendra;
+  }
+  
+  .dropdown-toggle {
+    background-color: #4d2c19; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background-color: #b85c1a;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #fff;
+    min-width: 150px;
+    border: 1px solid #d2691e;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-family: Almendra;
+  }
+  
+  .dropdown-menu a {
+    color: #4d2c19;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f5f5dc;
+  }
+  
+  /* Contenedor del menú: centrado horizontal y verticalmente */
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4d2c19; /* Fondo marrón oscuro */
+    color: #f5f5dc; /* Texto beige */
+    padding: 10px 20px;
+    position: relative; /* Para posicionar el logo */
+  }
+
+  .mobile-menu-container {
+    display: none;
+  }
+  
+  .menu .logo {
+    position: absolute;
+    left: 20px;
+    height: 100px;
+    top: 0px; /* Ajusta según necesites */
+  }
+  
+  .menu .divMenu {
+    font-size: 1.5rem;
+    font-family: Almendra;
+    margin: 0 15px;
+  }
+  
+  .menu .divMenu a {
+    color: #f5f5dc;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu .divMenu a:hover {
+    background-color: #d2691e; /* Detalle en naranja dorado al pasar el ratón */
+    border-radius: 4px;
+  }
+  
+  /* ================================
+     Estilos Generales para Enlaces e Imágenes
+  =============================== */
+  a {
+    color: #d2691e; /* Enlaces con detalle naranja */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* ================================
+     Clases Utilitarias (opcional)
+  =============================== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Landing                                               ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  .landingDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-color: #f5f5dc; /* Beige */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .landingDiv h2 {
+    font-family: 'Trade Winds', cursive;
+    font-size: 2.5rem;
+    color: #4d2c19; /* Marrón oscuro */
+    margin-bottom: 20px;
+  }
+  
+  .landingDiv p {
+    font-size: 1.2rem;
+    color: #4d2c19;
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-ingresar, .btn-abandonar {
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-ingresar:hover {
+    background-color: #b85c1a;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Crear anuncio                                           ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Título principal */
+  .crearanuncio-titulo {
+    text-align: center;
+    font-family: 'Almendra', cursive;
+    color: #4d2c19; /* Marrón oscuro */
+    margin: 30px 0 20px;
+    font-size: 2rem;
+  }
+
+  .buscarPartidas-titulo {
+    text-align: center;
+    font-family: 'Almendra', cursive;
+    color: #4d2c19;
+    font-size: 2rem;
+  }
+  
+  /* Contenedor general del formulario y la previsualización */
+  .crearanuncio-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #f5f5dc; /* Beige */
+    padding: 20px;
+    border-top: 2px solid #d2691e; /* Detalle en naranja dorado */
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  /* Estilos del formulario */
+  .crearanuncio-form {
+    flex: 1 1 500px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #4d2c19;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Distribución en grid de los campos del formulario */
+  .crearanuncio-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Grupos de campos */
+  .crearanuncio-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Etiquetas */
+  .crearanuncio-form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4d2c19;
+  }
+  
+  /* Controles del formulario (inputs y textareas) */
+  .crearanuncio-form-control {
+    padding: 8px;
+    border: 1px solid #4d2c19;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #4d2c19;
+    resize: none;
+  }
+  
+  /* Estilos para mensajes de error */
+  .crearanuncio-alert {
+    margin-top: 5px;
+    color: #d2691e;
+    font-size: 0.9rem;
+  }
+  
+  /* Botón para enviar el formulario */
+  .crearanuncio-btn {
+    display: block;
+    width: 200px;
+    margin: 30px auto 0;
+    padding: 10px;
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .crearanuncio-btn:hover {
+    background-color: #b85c1a;
+  }
+  
+  /* Contenedor de la vista previa */
+  .crearanuncio-preview-container {
+    flex: 1 1 300px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #4d2c19;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  /* Título de la vista previa */
+  .crearanuncio-preview-container h3 {
+    color: #4d2c19;
+    margin-bottom: 15px;
+  }
+  
+  /* Imagen de vista previa */
+  #crearanuncio-imagen-preview {
+    max-width: 100%;
+    border: 4px solid #d2691e;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .crearanuncio-help {
+    font-size: 0.8rem;
+    color: #7a5e43; /* Un tono marrón intermedio que complementa la paleta */
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Buscar partida                                           ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor global de DataTables */
+  .dataTables_wrapper {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc; /* Fondo beige */
+    color: #4d2c19; /* Texto en marrón oscuro */
+    padding: 15px;
+  }
+  
+  /* Estilo del campo de búsqueda */
+  .dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #4d2c19;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #4d2c19;
+    width: 200px;
+    margin-left: 5px;
+  }
+  
+  /* Selector de cantidad de registros */
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #4d2c19;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #4d2c19;
+    margin-left: 5px;
+  }
+  
+  /* Estilo de la tabla */
+  .dataTables_wrapper table.dataTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #4d2c19;
+  }
+  
+  /* Cabecera de la tabla */
+  .dataTables_wrapper table.dataTable thead {
+    background-color: #4d2c19; /* Fondo marrón oscuro */
+    color: #f5f5dc; /* Texto beige */
+  }
+  
+  .dataTables_wrapper table.dataTable thead th {
+    padding: 12px;
+    border-bottom: 2px solid #d2691e; /* Detalle en naranja dorado */
+    text-align: left;
+  }
+  
+  /* Celdas del cuerpo de la tabla */
+  .dataTables_wrapper table.dataTable tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Filas alternadas para mejor lectura */
+  .dataTables_wrapper table.dataTable tbody tr:nth-child(even) {
+    background-color: #fff;
+  }
+  
+  .dataTables_wrapper table.dataTable tbody tr:nth-child(odd) {
+    background-color: #f5f5dc;
+  }
+  
+  /* Efecto hover sobre las filas */
+  .dataTables_wrapper table.dataTable tbody tr:hover {
+    background-color: #d2691e;
+    color: #f5f5dc;
+  }
+  
+  /* Botones de paginación */
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border: 1px solid #4d2c19;
+    border-radius: 4px;
+    background-color: #f5f5dc;
+    color: #4d2c19;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate {
+    float: none !important;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }  
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #d2691e;
+    color: #f5f5dc;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #b85c1a;
+    color: #f5f5dc;
+    border: 1px solid #4d2c19;
+  }
+  
+  .dataTables_wrapper table.dataTable tbody tr:hover a {
+    color: #f5f5dc; /* Beige, para que contraste con el fondo naranja */
+  }
+  
+  /* ==========================================
+     Estilos para el Formulario de Filtros
+  ========================================== */
+  .filtro-container {
+    background-color: #f5f5dc; /* Beige */
+    padding: 20px;
+    border: 2px solid #d2691e; /* Naranja dorado */
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filtro-titulo {
+    font-family: 'Almendra', cursive;
+    color: #4d2c19; /* Marrón oscuro */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .filtro-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filtro-form .form-group {
+    flex: 1 1 300px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filtro-form label {
+    font-weight: bold;
+    color: #4d2c19;
+    margin-bottom: 5px;
+  }
+  
+  .filtro-select {
+    padding: 8px;
+    border: 1px solid #4d2c19;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #4d2c19;
+  }
+  
+  .filtro-radio-group {
+    flex: 1 1 100%;
+  }
+  
+  .radio-options {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .radio-options input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .filtro-btn {
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    flex: 1 1 100%;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .filtro-btn:hover {
+    background-color: #b85c1a;
+  }
+  
+  .dataTables_wrapper table.dataTable tbody tr:hover a {
+    color: #f5f5dc;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Perfiles                                            ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal del perfil */
+  .perfil-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #d2691e; /* Naranja dorado */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Contenedor de la imagen */
+  .imagen-container {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .imagen-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* =====================================
+     Tipografía y Encabezados
+  ===================================== */
+  .perfil-container h2 {
+    font-family: 'Almendra', cursive;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .perfil-container h3 {
+    font-size: 1.5rem;
+    color: #4d2c19;
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .tabla-container h3 {
+    font-size: 1.5rem;
+    color: #4d2c19;
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  /* Estilos para los datos del perfil: mostrar el texto y el botón en línea */
+  .perfil-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  
+  .perfil-info p {
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  /* =====================================
+     Tablas
+  ===================================== */
+  table.perfil-table,
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  
+  table.perfil-table th,
+  table th {
+    border: 1px solid #d2691e;
+    padding: 8px;
+    text-align: left;
+    background-color: #4d2c19;
+    color: #f5f5dc;
+  }
+  
+  table.perfil-table td,
+  table td {
+    border: 1px solid #d2691e;
+    padding: 8px;
+  }
+  
+  /* =====================================
+     Enlaces y Botones
+  ===================================== */
+  a {
+    color: #d2691e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #b85c1a;
+    text-decoration: underline;
+  }
+  
+  .chat-button {
+    display: inline-block;
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chat-button:hover {
+    background-color: #b85c1a;
+  }
+  
+  /* Botones de editar (comparten estilos con otros botones de acción) */
+  .edit-button {
+    background-color: #d2691e;
+    color: #f5f5dc;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .edit-button:hover {
+    background-color: #b85c1a;
+  }
+  
+  /* Formularios dentro de perfiles */
+  .perfil-form {
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  /* =====================================
+     Anuncios (Perfil de Anuncio)
+  ===================================== */
+  .anuncio-container {
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border: 1px solid #d2691e;
+    border-radius: 8px;
+    color: #f5f5dc;
+    margin: auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    max-width: 500px;
+  }
+  
+  .anuncio-titulo {
+    font-size: 1.8rem;
+    font-family: 'Trade Winds', cursive;
+    margin-bottom: 10px;
+  }
+  
+  .anuncio-detalle {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.35); /* Fondo negro semitransparente */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 2px 4px; /* Espaciado interno */
+    display: block;
+  }
+  
+  /* =====================================
+     Listados (Jugadores, Chats)
+  ===================================== */
+  .lista-jugadores,
+  .lista-chats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .jugadores,
+  .chat-usuario {
+    text-align: center;
+  }
+  
+  .jugador img,
+  .chat-usuario img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #d2691e;
+    margin-bottom: 5px;
+  }
+  
+  /* Contenedor y estilos para centrar el botón de editar avatar */
+  .avatar-edit-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .edit-avatar-button {
+    display: inline-block;
+  }
+  
+  /* Contenedor de la tabla de anuncios para limitar su ancho y centrarla */
+  .tabla-container {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  table.perfil-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table.perfil-table th,
+  table.perfil-table td {
+    border: 1px solid #d2691e;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Perfiles                                            ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal de notificaciones */
+  .notificaciones-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #d2691e; /* Detalle en naranja dorado */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notificaciones-title {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    font-size: 2rem;
+    color: #4d2c19;
+    margin-bottom: 20px;
+  }
+  
+  /* Alertas */
+  .alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #d2691e;
+    font-size: 0.9rem;
+    border-left: 4px solid #d2691e;
+    padding-left: 10px;
+  }
+  
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Listado de notificaciones y mensajes */
+  .notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .notification-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5dc;
+    border-radius: 4px;
+  }
+  
+  /* Acciones dentro de cada notificación */
+  .notification-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  /* Formularios de notificación */
+  .notification-form {
+    display: inline-block;
+  }
+  
+  /* Botones comunes */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin: 5px 0;
+    background-color: #d2691e;
+    color: #f5f5dc;
+  }
+  
+  /* Botón Aceptar */
+  .btn-accept {
+    background-color: #ff8800;
+  }
+  
+  .btn-accept:hover {
+    background-color: #cc6d00;
+  }
+  
+  /* Botón Rechazar */
+  .btn-reject {
+    background-color: #db7500;
+  }
+  
+  .btn-reject:hover {
+    background-color: #ac5c00;
+  }
+  
+  /* Botón Eliminar Notificación */
+  .btn-delete {
+    background-color: #db7500;
+  }
+  
+  .btn-delete:hover {
+    background-color: #ac5c00;
+  }
+  
+  /* Botón para Ver el Mensaje */
+  .btn-chat {
+    background-color: #007bff;
+  }
+  
+  .btn-chat:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Enlaces dentro de los items */
+  .notification-item a {
+    color: #d2691e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .notification-item a:hover {
+    color: #b85c1a;
+    text-decoration: underline;
+  }
+  
+  /* Mensajes vacíos */
+  .no-notificaciones,
+  .no-mensajes {
+    text-align: center;
+    font-style: italic;
+    color: #4d2c19;
+    margin-top: 20px;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Chat                                                 ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal del chat */
+  .chat-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #d2691e; /* Naranja dorado */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-title {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    font-size: 2rem;
+    color: #4d2c19;
+    margin-bottom: 20px;
+  }
+  
+  .chat-history {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 400px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    background-color: #f5f5dc; /* Fondo beige */
+  }
+  
+  .chat-message {
+    margin-bottom: 15px;
+    max-width: 70%;
+    padding: 8px;
+    border-radius: 8px;
+    clear: both;
+  }
+  
+  .chat-message-in {
+    background-color: #e0e0e0;
+    color: #4d2c19;
+    float: left;
+  }
+  
+  .chat-message-out {
+    background-color: #d2691e;
+    color: #f5f5dc;
+    float: right;
+    text-align: right;
+  }
+  
+  .chat-message-content {
+    margin-bottom: 5px;
+  }
+  
+  .chat-message-time {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  
+  .chat-form-container {
+    margin-top: 20px;
+  }
+  
+  .chat-form-title {
+    font-size: 1.5rem;
+    color: #4d2c19;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .chat-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .chat-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .chat-textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #4d2c19;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  .chat-send-button {
+    align-self: center;
+    padding: 10px 20px;
+    background-color: #d2691e;
+    color: #f5f5dc;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chat-send-button:hover {
+    background-color: #b85c1a;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Login                                                 ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal del login */
+  .login-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f5f5dc; /* Beige */
+    border: 1px solid #d2691e; /* Naranja dorado */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-title {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    color: #4d2c19; /* Marrón oscuro */
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #4d2c19;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #4d2c19;
+  }
+  
+  .btn-register {
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc; /* Beige */
+  }
+  
+  .botonLogin:hover,
+  .btn-register:hover {
+    background-color: #b85c1a;
+  }
+  
+  .login-options {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-options a {
+    margin: 0 5px;
+  }
+  
+  .botonLogin {
+    display: block;
+    margin: 0 auto;
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Crear usuario                                           ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal del registro */
+  .register-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f5f5dc; /* Beige */
+    border: 1px solid #d2691e; /* Naranja dorado */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-title {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    font-size: 2rem;
+    color: #4d2c19; /* Marrón oscuro */
+    margin-bottom: 20px;
+  }
+  
+  .register-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .botonRegister:hover {
+    background-color: #b85c1a;
+  }
+  
+  .botonRegister {
+    display: block;
+    margin: 0 auto;
+    background-color: #d2691e; /* Naranja dorado */
+    color: #f5f5dc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Elegir avatar                                        ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* Contenedor principal de la selección de avatar */
+  .avatar-grid-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .avatar-title {
+    font-family: 'Trade Winds', cursive;
+    font-size: 2rem;
+    color: #4d2c19; /* Marrón oscuro */
+    margin-bottom: 20px;
+  }
+  
+  .avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .avatar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .avatar-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #d2691e;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .avatar-btn {
+    background-color: #d2691e;
+    color: #f5f5dc;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .avatar-btn:hover {
+    background-color: #b85c1a;
+  }
+  
+  /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Editar                                                ---------------
+     ---------------------------------------------------------------------------------------------------*/
+  /* ====================================
+     Formularios de Edición (Usuarios, Tienda, etc.)
+  ==================================== */
+  .edit-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f5f5dc; /* Beige */
+    border: 1px solid #d2691e;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-title {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    font-size: 2rem;
+    color: #4d2c19;
+    margin-bottom: 20px;
+  }
+  
+  .edit-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .edit-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #4d2c19;
+  }
+  
+  .edit-form .btn:hover {
+    background-color: #b85c1a;
+  }
+
+  .botonEchar {
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #dc3545;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botonEchar:hover {
+    background-color: #c82333;
+  }
+
+    /*  ---------------------------------------------------------------------------------------------------
+     ---------------                 Admin                                                ---------------
+     ---------------------------------------------------------------------------------------------------*/
+/* Contenedor principal del área de administración */
+.admin-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f5f5dc; /* Beige */
+  border: 1px solid #d2691e; /* Naranja dorado */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Título de la sección */
+.admin-title {
+  text-align: center;
+  font-family: 'Trade Winds', cursive;
+  font-size: 2rem;
+  color: #4d2c19; /* Marrón oscuro */
+  margin-bottom: 20px;
+}
+
+/* Alertas */
+.admin-alert {
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.admin-alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.admin-alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Formularios de administración */
+.admin-form {
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #4d2c19;
+}
+
+/* Selects del formulario */
+.admin-select {
+  padding: 8px;
+  border: 1px solid #4d2c19;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #4d2c19;
+}
+
+/* Botones generales para admin */
+.admin-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #d2691e; /* Naranja dorado */
+  color: #f5f5dc; /* Beige */
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.admin-btn:hover {
+  background-color: #b85c1a;
+}
+
+/* Botón específico para Banhammer */
+.admin-btn-danger {
+  background-color: #dc3545;
+}
+
+.admin-btn-danger:hover {
+  background-color: #c82333;
+}
+
+.juegos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.juegos-title {
+  font-family: 'Trade Winds', cursive;
+  font-size: 2.5rem;
+  color: #4d2c19;
+  margin-bottom: 20px;
+}
+
+.juegos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.juego-item {
+  background-color: #fff;
+  border: 1px solid #d2691e;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.juego-item:hover {
+  transform: translateY(-5px);
+}
+
+.juego-img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #d2691e;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.juego-name {
+  font-size: 1.5rem;
+  color: #4d2c19;
+  margin: 10px 0;
+}
+
+  
+  
+  
+  /*  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     /////////////////////---------------------------------------------------------------------------------------------------///////////////////////////////////////////////
+     /////////////////////////////////////////CAMBIO A LA VERSION DE MOVIL////////////////////////////////////////////////////////////////////////////////////////////////
+     ///////////////////---------------------------------------------------------------------------------------------------------///////////////////////////////////////////
+     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+  
+  @media only screen and (max-width: 768px) {
+
+    #notificaciones-alert {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+
+    .mobile-menu-container {
+      display: block;
+      position: relative;
+      padding: 10px;
+      background-color: #4d2c19; 
+      text-align: right; 
+    }
+  
+    .mobile-menu-toggle {
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      color: #f5f5dc;
+      cursor: pointer;
+    }
+  
+    .mobile-menu {
+      font-size: 1rem;
+      font-family: Almendra;
+      font-weight: bold;
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #4d2c19;
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .mobile-menu button {
+      font-size: 1rem;
+      font-family: Almendra;
+    }
+  
+    .mobile-menu a {
+      display: block;
+      padding: 10px;
+      color: #f5f5dc;
+      text-decoration: none;
+      border-bottom: 1px solid #d2691e;
+    }
+  
+    .mobile-menu a:hover {
+      background-color: #b85c1a;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .dataTables_wrapper {
+      padding: 10px;
+      font-size: 0.85rem;
+      overflow-x: auto;  /* Permite scroll horizontal si la tabla es muy ancha */
+    }
+  
+    /* Campo de búsqueda y selector: ancho completo */
+    .dataTables_wrapper .dataTables_filter input,
+    .dataTables_wrapper .dataTables_length select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px;
+      margin-bottom: 10px;
+    }
+  
+    /* Cabecera de la tabla: se reduce el padding y la fuente */
+    .dataTables_wrapper table.dataTable thead th {
+      padding: 8px;
+      font-size: 0.85rem;
+    }
+  
+    /* Celdas del cuerpo de la tabla */
+    .dataTables_wrapper table.dataTable tbody td {
+      padding: 8px;
+      font-size: 0.8rem;
+    }
+  
+    /* Filas alternadas y efecto hover se mantienen, pero con tamaño reducido */
+    .ocultar-mobile {
+      display: none;
+    }
+
+    .dataTables_wrapper table.dataTable tbody tr:hover {
+      background-color: #d2691e;
+      color: #f5f5dc;
+    }
+  
+    /* Botones de paginación */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      padding: 5px 10px;
+      margin: 0 2px;
+      font-size: 0.8rem;
+      border-radius: 3px;
+    }
+    
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      padding: 5px 10px;
+      margin: 0 2px;
+      font-size: 0.8rem;
+    }
+  
+
+
+  }
