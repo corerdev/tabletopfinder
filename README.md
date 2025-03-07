@@ -1,6 +1,6 @@
 # Tabletop Finder
 
-![Logo de Tabletop Finder](aplicacion/public/imgages/Logo.png)
+![Logo de Tabletop Finder](https://github.com/corerdev/tabletopfinder/blob/main/aplicacion/public/images/Logo.png?raw=true)
 
 ## Introducción
 
