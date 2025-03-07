@@ -6,7 +6,6 @@ use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\TipoLavadoController;
 use App\Http\Controllers\JuegosController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NotificacionesController;
 
 // Sección de administrador
@@ -77,8 +76,3 @@ Route::get('/notificaciones/contarNotificaciones', [NotificacionesController::cl
 Route::get('/notificaciones/{contactoUuid}', [NotificacionesController::class, 'mostrarChat'])->name('notificaciones.mostrarChat');
 
 
-
-// Sección de login con Google
-
-Route::get('/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
-Route::get('/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');

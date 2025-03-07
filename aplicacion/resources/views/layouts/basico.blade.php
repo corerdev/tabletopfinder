@@ -7,6 +7,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/> 
   <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DQSBF1HDHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DQSBF1HDHW');
+</script>
 
   @yield('scripts')
   <link rel="preconnect" href="https://fonts.gstatic.com">

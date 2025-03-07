@@ -275,7 +275,7 @@ class UsuariosController extends Controller
     {
         $user = Usuarios::findOrFail($id);
         $validatedData = $request->validate([
-            'descripcion' => 'required|min:5|max:500|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()]+$/'
+            'descripcion' => 'required|min:5|max:500|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()¡!¿?\.,:;]+$/'
         ]);
         $user->update($validatedData);
         return redirect()->route('usuarios.miPerfil')->with('success', 'Usuario actualizado exitosamente.');

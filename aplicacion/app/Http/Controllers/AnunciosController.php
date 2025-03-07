@@ -50,8 +50,8 @@ class AnunciosController extends Controller
     {   
         $datos = $request->validate([
             'titulo'      => 'required|min:5|max:35|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/',
-            'descripcion' => 'required|min:5|max:500|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()]+$/',
-            'desccorta'   => 'required|min:5|max:30|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()]+$/',
+            'descripcion' => 'required|min:5|max:500|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()¡!¿?\.,:;]+$/',
+            'desccorta'   => 'required|min:5|max:30|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()¡!¿?\.,:;]+$/',
             'fondo'       => 'required|min:2|max:10|regex:/^[A-Za-z]+$/',
             'medio'       => 'required|max:10|regex:/^[A-Za-z]+$/',
             'juegocode'   => 'required|int',
