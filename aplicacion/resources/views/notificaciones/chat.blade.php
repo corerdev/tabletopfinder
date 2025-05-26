@@ -4,15 +4,42 @@
 
 @section('contenido')
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  var chatHistory = document.querySelector('.chat-history');
-  if (chatHistory) {
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+document.addEventListener("DOMContentLoaded", function() {
+  const chatHistory = document.querySelector('.chat-history');
+  
+  // Función para mantener el scroll al final
+  function scrollToBottom() {
+    if (chatHistory) {
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
   }
+
+  // Scroll al final al cargar la página
+  scrollToBottom();
+
+  // Observador de mutaciones para detectar nuevos mensajes
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes.length) {
+        scrollToBottom();
+      }
+    });
+  });
+
+  // Configurar el observador
+  if (chatHistory) {
+    observer.observe(chatHistory, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  // También scroll al final cuando la ventana cambia de tamaño
+  window.addEventListener('resize', scrollToBottom);
 });
 </script>
 <div class="chat-container">
-    <h2 class="chat-title">Chat con {{ $recipiente->username }}</h2>
+    <h2 class="chat-title">Mensajes con {{ $recipiente->username }}</h2>
 
     <div class="chat-history">
         @foreach($mensajes as $mensaje)

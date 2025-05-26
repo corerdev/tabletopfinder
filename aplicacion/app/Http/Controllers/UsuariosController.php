@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class UsuariosController extends Controller
@@ -485,4 +486,22 @@ class UsuariosController extends Controller
         $user->delete();
         return redirect()->back()->with('success', 'El usuario ha sido eliminado correctamente.');
     }
+
+    /*
+* Método para obtener la ruta del avatar para el menú 
+* Se llama desde todas las páginas, por lo que usamos caché para no repetir la búsqueda constantemente
+* 
+*/ 
+
+    public function getAvatarRuta($nombreAvatar)
+{
+    if (!$nombreAvatar) {
+        return null;
+    }
+    
+    return Cache::remember("avatar_ruta_{$nombreAvatar}", now()->addDays(1), function () use ($nombreAvatar) {
+        $fondo = DB::table('fondos')->where('nombre', $nombreAvatar)->first();
+        return $fondo ? $fondo->ruta : null;
+    });
+}
 }
