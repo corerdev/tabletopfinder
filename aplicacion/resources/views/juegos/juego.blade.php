@@ -4,53 +4,88 @@
 
 @section('contenido')
 
-<div class="perfil-container">
-    <div class="imagen-container">
-        <h2>{{ $juego->nombre }}</h2>
-        <img src="{{ asset('images/juegos/' . $juego->rutaimagen) }}"/>
-        <p>{{ $juego->descripcion }}</p>
-        @if($juego->tipo == 'versus')
-            <p>
-                <strong>Juego de jugador contra jugador</strong> 
-            </p>
-        @endif
-        @if($juego->tipo == 'coop')
-            <p>
-                <strong>Juego cooperativo</strong> 
-            </p>
-        @endif  
-        @if($juego->tipo == 'versus/coop')
-            <p>
-                <strong>Juego cooperativo y jugador contra jugador</strong> 
-            </p>
-        @endif          
-    </div>   
+<div class="juego-detalle-container">
+    <!-- Nuevo div contenedor para título e imagen -->
+    <div class="juego-header-container">
+        <div class="juego-header-content">
+            <h1 class="juego-titulo">{{ $juego->nombre }}</h1>
+            <img src="{{ asset('images/juegos/' . $juego->rutaimagen) }}" class="juego-imagen"/>
+        </div>
+    </div>
+
+    <!-- Contenedor principal flex -->
+    <div class="juego-info-wrapper">
+        <!-- Div de texto/información -->
+        <div class="juego-texto-container">
+            <p class="juego-descripcion">{{ $juego->descripcion }}</p>
+            
+            @if($juego->tipo == 'versus')
+                <p class="juego-tipo">
+                    <strong>Juego de jugador contra jugador</strong> 
+                </p>
+            @endif
+            @if($juego->tipo == 'coop')
+                <p class="juego-tipo">
+                    <strong>Juego cooperativo</strong> 
+                </p>
+            @endif  
+            @if($juego->tipo == 'versus/coop')
+                <p class="juego-tipo">
+                    <strong>Juego cooperativo y jugador contra jugador</strong> 
+                </p>
+            @endif
+        </div>
+
+        <!-- Contenedor de anuncios flotante -->
+        <div class="juego-anuncios-flotante">
+            <button class="anuncios-toggle-btn">
+                <span class="toggle-icon">►</span>
+                <span class="toggle-text">Anuncios de {{ $juego->nombre }}</span>
+            </button>
+            
+            <div class="tabla-anuncios-container">
+                <table class="anuncios-table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Plazas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($anuncios as $anuncio)
+                            <tr>
+                                <td><a href="{{ route('anuncios.show', $anuncio->uuid) }}">{{ $anuncio->titulo }}</a></td>
+                                <td>{{ $anuncio->descripcion }}</td>
+                                <td>{{ $anuncio->plazas_ocupadas }} / {{ $anuncio->plazas }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">Este juego no tiene anuncios.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="tabla-container">
-<h3>Anuncios de {{ $juego->nombre }}</h3>
-<table  class="perfil-table">
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Descripción</th>
-            <th>Plazas</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($anuncios as $anuncio)
-            <tr>
-                <td><a href="{{ route('anuncios.show', $anuncio->uuid) }}">{{ $anuncio->titulo }}</a></td>
-                <td>{{ $anuncio->descripcion }}</td>
-                <td>{{ $anuncio->plazas_ocupadas }} / {{ $anuncio->plazas }}</td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="4">Este Juego no tiene anuncios.</td>
-            </tr>
-        @endforelse
-    </tbody>
-</table>
-</div>
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.querySelector('.anuncios-toggle-btn');
+    const tablaContainer = document.querySelector('.tabla-anuncios-container');
+    
+    if(toggleBtn && tablaContainer) {
+        toggleBtn.addEventListener('click', function() {
+            tablaContainer.classList.toggle('visible');
+            const icon = this.querySelector('.toggle-icon');
+            icon.textContent = tablaContainer.classList.contains('visible') ? '▼' : '►';
+        });
+    }
+});
+</script>
+@endsection
 
 @endsection

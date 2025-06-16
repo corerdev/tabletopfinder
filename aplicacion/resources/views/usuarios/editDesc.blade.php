@@ -20,7 +20,8 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-      <label for="descripcion">Nombre</label>
+      <label for="descripcion">Descripción</label>
+      <small class="crearanuncio-help">Entre cinco y quinientos carácteres, solo letras, números, paréntesis y signos de puntuación.</small>
       <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{ old('descripcion', $usuario->descripcion) }}" required>
     </div>
     <button type="submit" class="btn">Actualizar Usuario</button>

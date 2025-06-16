@@ -21,6 +21,8 @@
     @method('PUT')
     <div class="form-group">
       <label for="username">Nombre</label>
+      <small class="crearanuncio-help">Máximo 15 caracteres, solo letras.</small>
+      <small class="crearanuncio-help">El usuario solo se puede cambiar una vez al mes.</small>
       <input type="text" name="username" id="username" class="form-control" value="{{ old('username', $usuario->username) }}" required>
     </div>
     <button type="submit" class="btn">Actualizar Usuario</button>

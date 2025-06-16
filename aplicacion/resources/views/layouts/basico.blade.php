@@ -20,8 +20,10 @@
   @yield('scripts')
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css.css') }}">
   <title>@yield('title')</title>
+  
 </head>
 <body>
 
@@ -31,10 +33,17 @@
   <button id="close-notificaciones">X</button>
 </div>
 
-  @include('layouts.menu')
-  
-    @yield('contenido')
+@include('layouts.menu')
 
+<div class="main-container">
+  <div class="side-bar left-bar"></div>
+  
+  <div class="content-wrapper">
+    @yield('contenido')
+  </div>
+  
+  <div class="side-bar right-bar"></div>
+</div>
     <script>
   $(document).ready(function(){
       function checkNotificaciones() {

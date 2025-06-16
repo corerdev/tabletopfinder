@@ -21,6 +21,7 @@
     @method('PUT')
     <div class="form-group">
       <label for="email">Email</label>
+      <small class="crearanuncio-help">Máximo 40 caracteres, solo formato mail (debe incluir una arroba y un punto)</small>
       <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $usuario->email) }}" required>
     </div>
     <button type="submit" class="btn">Actualizar Usuario</button>

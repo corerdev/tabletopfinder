@@ -5,6 +5,11 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+
+    const routeAnuncios = "{{ route('anuncios.show', ['id' => 'UUID_PLACEHOLDER']) }}".replace('UUID_PLACEHOLDER', '');
+    const routeUsuarios = "{{ route('usuarios.show', ['nombre' => 'USERNAME_PLACEHOLDER']) }}".replace('USERNAME_PLACEHOLDER', '');
+    const routeJuegos = "{{ route('juegos.show', ['nombre' => 'JUEVOCODE_PLACEHOLDER']) }}".replace('JUEVOCODE_PLACEHOLDER', '');
+
     function inicializarDataTable(selector, esTienda) {
         var pageLength = esTienda == 0 ? 10 : 20;
         return $(selector).DataTable({
@@ -40,7 +45,7 @@ $(document).ready(function() {
                     data: 'titulo',
                     name: 'titulo',
                     render: function(data, type, row) {
-                        return '<a href="/tabletopFinder/aplicacion/public/anuncios/' + encodeURIComponent(row.uuid) + '">' + data + '</a>';
+                        return '<a href="' + routeAnuncios + encodeURIComponent(row.uuid) + '">' + data + '</a>';
                     }
                 },
                 {
@@ -50,7 +55,7 @@ $(document).ready(function() {
                     searchable: false,
                     className: 'ocultar-mobile',
                     render: function(data, type, row) {
-                        return '<a href="/tabletopFinder/aplicacion/public/usuarios/' + encodeURIComponent(row.creador) + '">' + data + '</a>';
+                        return '<a href="' + routeUsuarios + encodeURIComponent(row.creador) + '">' + data + '</a>';
                     }
                 },
                 {
@@ -65,7 +70,7 @@ $(document).ready(function() {
                     orderable: false,
                     searchable: false,
                     render: function(data, type, row) {
-                        return '<a href="/tabletopFinder/aplicacion/public/juegos/' + encodeURIComponent(row.juegocode) + '">' + data + '</a>';
+                        return '<a href="' + routeJuegos + encodeURIComponent(row.juegocode) + '">' + data + '</a>';
                     }
                 },
                 {
@@ -154,9 +159,12 @@ $(document).ready(function() {
   </form>
 </div>
 
-<div>
+<div class="tables-container">
+  <!-- Tabla de tiendas -->
+  <div class="table-wrapper">
     <h2 class="buscarPartidas-titulo">Partidas de nuestras tiendas</h2>
-    <table id="listAnunciosTienda">
+    <div class="table-responsive">
+    <table id="listAnunciosTienda" class="display responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>ID</th>
@@ -169,11 +177,13 @@ $(document).ready(function() {
         </thead>
         <tbody></tbody>
     </table>   
-</div>
+  </div></div>
 
-<div>
+  <!-- Tabla de jugadores -->
+  <div class="table-wrapper">
     <h2 class="buscarPartidas-titulo">Partidas de nuestros jugadores</h2>
-    <table id="listAnuncios">
+    <div class="table-responsive">
+    <table id="listAnuncios" class="display responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>ID</th>
@@ -186,5 +196,6 @@ $(document).ready(function() {
         </thead>
         <tbody></tbody>
     </table>   
+  </div></div>
 </div>
 @endsection
