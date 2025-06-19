@@ -5,7 +5,7 @@
 @section('contenido')
 
 <style>
-    /* Estilos para mensajes de error */
+    
     .crearanuncio-error-message {
         color: #ff4444;
         font-size: 0.8rem;
@@ -18,12 +18,10 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Estilo para campos inválidos */
     .crearanuncio-form-control:invalid {
         border-color: #ff4444 !important;
     }
 
-    /* Estilo para selects inválidos */
     select:invalid {
         border-color: #ff4444 !important;
     }
@@ -31,13 +29,13 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Expresiones regulares para validación
+    
     const tituloRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s]{1,35}$/;
     const plazasRegex = /^[1-9][0-9]?$|^99$/;
     const descripcionRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ,.\s]{1,500}$/;
     const desccortaRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ,.\s]{1,30}$/;
 
-    // Objeto con mensajes de error
+    
     const errorMessages = {
         titulo: {
             empty: 'El título no puede estar vacío',
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Elementos del DOM
+    
     const tituloField = document.getElementById('titulo');
     const plazasField = document.getElementById('plazas');
     const descripcionField = document.getElementById('descripcion');
@@ -73,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.querySelector('.crearanuncio-btn');
     const form = document.querySelector('.crearanuncio-form');
 
-    // Objeto para rastrear interacciones
+    
     const interactedFields = {
         titulo: false, 
         plazas: false, 
@@ -83,14 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
         juego: false
     };
 
-    // Mostrar error
+    
     function showError(field, message) {
         field.style.border = '2px solid #ff4444';
         const errorElement = document.createElement('div');
         errorElement.className = 'crearanuncio-error-message';
         errorElement.textContent = message;
         
-        // Eliminar error previo si existe
+        /
         const existingError = field.nextElementSibling;
         if (existingError && existingError.classList.contains('crearanuncio-error-message')) {
             existingError.remove();
@@ -99,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         field.parentNode.insertBefore(errorElement, field.nextSibling);
     }
 
-    // Limpiar error
+    
     function clearError(field) {
         field.style.border = '';
         const errorElement = field.nextElementSibling;
@@ -108,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Validar campo genérico
+    
     function validateField(field, regex, fieldName) {
         const value = field.value.trim();
         
@@ -128,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    // Validar select
+    
     function validateSelect(selectField, fieldName) {
         if (!interactedFields[fieldName]) return true;
         
@@ -141,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    // Validar todo el formulario
+    
     function checkFormValidity() {
         let isFormValid = true;
         
@@ -178,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return isFormValid;
     }
 
-    // Manejar primera interacción
+    
     function handleFirstInteraction(e, fieldName) {
         if (!interactedFields[fieldName]) {
             interactedFields[fieldName] = true;
@@ -186,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listeners
+    
     if (tituloField) {
         tituloField.addEventListener('input', () => handleFirstInteraction(event, 'titulo'));
         tituloField.addEventListener('blur', () => checkFormValidity());
@@ -215,10 +213,10 @@ document.addEventListener('DOMContentLoaded', function() {
         juegoField.addEventListener('change', () => handleFirstInteraction(event, 'juego'));
     }
 
-    // Validación inicial
+    
     checkFormValidity();
 
-    // Validar antes de enviar
+    
     if (form) {
         form.addEventListener('submit', function(e) {
             Object.keys(interactedFields).forEach(key => interactedFields[key] = true);
@@ -230,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Vista previa del fondo
+    
     if (fondoField) {
         fondoField.addEventListener('change', function() {
             const imagenSeleccionada = this.options[this.selectedIndex].getAttribute('ruta');

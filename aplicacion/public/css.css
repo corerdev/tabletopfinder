@@ -57,6 +57,343 @@ body {
     margin: 0;
     padding: 0;
   }
+
+  /*====================================
+    Landing page
+    ====================================*/
+
+.landingDiv, .dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.landingDiv {
+  text-align: center;
+}
+
+.landingDiv h2 {
+  font-size: 2.3rem;
+  color: #5c3a21;
+  margin-bottom: 1.2rem;
+}
+
+.imgelefante {
+  max-width: 180px;
+  margin: 1rem auto;
+  display: block;
+}
+
+.landingDiv p {
+  font-size: 1.1rem;
+  color: #7a5c44;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.collaborators-section {
+  margin: 3rem auto 0;
+  padding: 2rem;
+  background-color: #f9f5f0;
+  border-radius: 12px;
+  max-width: 900px;
+}
+
+.collaborators-section h3 {
+  font-size: 1.4rem;
+  color: #5c3a21;
+  margin-bottom: 1.8rem;
+}
+
+.collaborators-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.collaborators-grid img {
+  height: 60px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.collaborators-grid img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.dashboard-container {
+  padding-top: 1.5rem;
+}
+
+.welcome-back h2 {
+  font-size: 1.8rem;
+  color: #5c3a21;
+  margin-bottom: 0.4rem;
+}
+
+.welcome-back p {
+  color: #8c7b6b;
+  margin-bottom: 1.8rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.featured-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 12px rgba(92, 58, 33, 0.08);
+  border: 1px solid #f0e6d8;
+}
+
+.featured-card h3 {
+  font-size: 1.25rem;
+  color: #5c3a21;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f0e6d8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  background: #fdfaf6;
+  border-radius: 8px;
+  border: 1px solid #f0e6d8;
+  transition: all 0.2s ease;
+}
+
+.post-item:hover {
+  background: #f9f1e6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(210, 105, 30, 0.1);
+}
+
+.post-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #e0d6cc;
+}
+
+.post-content h4 {
+  margin: 0;
+  color: #5c3a21;
+  font-size: 1rem;
+}
+
+.post-content p {
+  margin: 0.3rem 0 0;
+  color: #7a5c44;
+  font-size: 0.9rem;
+}
+
+.post-date {
+  display: block;
+  font-size: 0.75rem;
+  color: #a89b8f;
+  margin-top: 0.4rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.compact-calendar {
+  background: white;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  border: 1px solid #f0e6d8;
+}
+
+.compact-calendar h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #5c3a21;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.calendar-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #8c7b6b;
+}
+
+.calendar-nav {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #d2691e;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.calendar-nav:hover {
+  background-color: #f5e9de;
+}
+
+.compact-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+}
+
+.compact-calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  background: #f9f5f0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.compact-calendar-day:hover {
+  background: #f0e6d8;
+}
+
+.compact-calendar-day.today {
+  background: #d2691e;
+  color: white;
+  font-weight: bold;
+}
+
+.event-dot {
+  position: absolute;
+  bottom: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d2691e;
+}
+
+.compact-calendar-day.today .event-dot {
+  background: white;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.btn-action {
+  padding: 0.8rem;
+  background-color: white;
+  border: 1px solid #d2691e;
+  color: #d2691e;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-action:hover {
+  background-color: #d2691e;
+  color: white;
+}
+
+.btn-small {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #d2691e;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-top: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.btn-small:hover {
+  background-color: #b35917;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: static;
+    grid-row: 1;
+  }
+  
+  .collaborators-grid {
+    gap: 1.5rem;
+  }
+  
+  .collaborators-grid img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landingDiv h2 {
+    font-size: 2rem;
+  }
+  
+  .post-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .post-item img {
+    margin: 0 auto;
+  }
+  
+  .btn-action, .btn-small {
+    width: 100%;
+  }
+}
   
   /* ================================
      Panel de Notificaciones
@@ -171,6 +508,7 @@ body {
     z-index: 2; 
 }
 
+
 .menu .divMenu {
     font-size: 1.5rem;
     margin: 0 15px;
@@ -261,7 +599,7 @@ body {
   /*  ---------------------------------------------------------------------------------------------------
      ---------------                 Crear anuncio                                           ---------------
      ---------------------------------------------------------------------------------------------------*/
-  /* Título principal */
+ 
   .crearanuncio-titulo {
     text-align: center;
     color: #4d2c19; 
@@ -346,7 +684,6 @@ body {
     background-color: #b85c1a;
   }
   
-  /* Contenedor de la vista previa */
   .crearanuncio-preview-container {
     flex: 1 1 300px;
     margin: 10px;
@@ -357,13 +694,11 @@ body {
     text-align: center;
   }
   
-  /* Título de la vista previa */
   .crearanuncio-preview-container h3 {
     color: #4d2c19;
     margin-bottom: 15px;
   }
   
-  /* Imagen de vista previa */
   #crearanuncio-imagen-preview {
     max-width: 100%;
     border: 4px solid #d2691e;
@@ -778,6 +1113,11 @@ body {
     justify-content: space-between;
     padding: 5px 0;
   }
+  .perfil-info-password {
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
   
   .perfil-info p {
     margin: 0;
@@ -856,7 +1196,7 @@ body {
   }
   
   .edit-button:hover {
-    background-color: #b85c1a;
+    background-color: #fde1cd;
   }
   
   .perfil-form {
@@ -1783,11 +2123,6 @@ body {
     border-radius: 3px;
 }
 
-
-
-
-  
-  
   /*  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      /////////////////////---------------------------------------------------------------------------------------------------///////////////////////////////////////////////
      /////////////////////////////////////////CAMBIO A LA VERSION DE MOVIL////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1946,6 +2281,5 @@ body {
     .juego-anuncios-content.show {
         padding: 15px;
     }
-
 
   }

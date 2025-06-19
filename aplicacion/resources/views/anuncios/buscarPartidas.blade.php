@@ -160,7 +160,7 @@ $(document).ready(function() {
 </div>
 
 <div class="tables-container">
-  <!-- Tabla de tiendas -->
+  
   <div class="table-wrapper">
     <h2 class="buscarPartidas-titulo">Partidas de nuestras tiendas</h2>
     <div class="table-responsive">
@@ -179,7 +179,7 @@ $(document).ready(function() {
     </table>   
   </div></div>
 
-  <!-- Tabla de jugadores -->
+  
   <div class="table-wrapper">
     <h2 class="buscarPartidas-titulo">Partidas de nuestros jugadores</h2>
     <div class="table-responsive">

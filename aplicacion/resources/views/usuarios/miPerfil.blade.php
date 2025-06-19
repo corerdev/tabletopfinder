@@ -14,6 +14,12 @@
 
     <h2>Perfil personal de {{ $usuario->username }}</h2>
 
+    @if (session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
+
     <div class="perfil-info">
         <p><strong>Nombre:</strong> {{ $usuario->username }}</p>
         <a href="{{ route('usuarios.editUser', $usuario->uuid) }}" class="edit-button">✎</a>
@@ -27,6 +33,10 @@
     <div class="perfil-info">
         <p><strong>Descripción:</strong> {{ $usuario->descripcion }}</p>
         <a href="{{ route('usuarios.editDesc', $usuario->uuid) }}" class="edit-button">✎</a>
+    </div>
+
+    <div class="perfil-info-password">
+        <a href="{{ route('usuarios.editPassword', $usuario->uuid) }}" class="edit-button">Actualizar contraseña ✎</a>
     </div>
 
 
@@ -68,7 +78,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Este usuario no ha publicado anuncios.</td>
+                    <td colspan="4">No te has inscrito en ninguna partida.</td>
                 </tr>
             @endforelse
         </tbody>
@@ -96,7 +106,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Este usuario no ha publicado anuncios.</td>
+                    <td colspan="4">No has publicado anuncios.</td>
                 </tr>
             @endforelse
         </tbody>

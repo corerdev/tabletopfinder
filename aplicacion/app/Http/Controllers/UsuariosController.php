@@ -279,7 +279,7 @@ class UsuariosController extends Controller
             'descripcion' => 'required|min:5|max:500|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s()¡!¿?\.,:;]+$/'
         ]);
         $user->update($validatedData);
-        return redirect()->route('usuarios.miPerfil')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('usuarios.miPerfil')->with('success', 'Descripción actualizada exitosamente.');
     }
 
 /*
@@ -307,7 +307,7 @@ class UsuariosController extends Controller
             'email' => 'required|max:40|regex:/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/'
         ]);
         $user->update($validatedData);
-        return redirect()->route('usuarios.miPerfil')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('usuarios.miPerfil')->with('success', 'Email actualizado exitosamente.');
     }
 
 /*
@@ -347,7 +347,7 @@ class UsuariosController extends Controller
         }
         $datos['ultimaUpdate'] = Carbon::now();
         $user->update($datos);
-        return redirect()->route('usuarios.miPerfil')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('usuarios.miPerfil')->with('success', 'Nombre actualizado exitosamente.');
     }
 
 /*
@@ -377,7 +377,7 @@ class UsuariosController extends Controller
         ]);
         $datosUser['avatar'] = $datos['avatar'];
         $user->update($datosUser);
-        return redirect()->route('usuarios.miPerfil')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('usuarios.miPerfil')->with('success', 'Avatar actualizado exitosamente.');
     }
 
 /*
@@ -494,7 +494,7 @@ class UsuariosController extends Controller
 */ 
 
     public function getAvatarRuta($nombreAvatar)
-{
+    {
     if (!$nombreAvatar) {
         return null;
     }
@@ -502,6 +502,54 @@ class UsuariosController extends Controller
     return Cache::remember("avatar_ruta_{$nombreAvatar}", now()->addDays(1), function () use ($nombreAvatar) {
         $fondo = DB::table('fondos')->where('nombre', $nombreAvatar)->first();
         return $fondo ? $fondo->ruta : null;
-    });
-}
+        });
+    }
+
+/*
+* Método que llama a la vista de edición de password
+* Se llama desde el botón correspondiente en miPerfil
+* 
+*/ 
+
+    public function editPassword($id)
+    {
+        $usuario = Usuarios::findOrFail($id);
+        return view('usuarios.editPassword', compact('usuario'));
+    }
+
+/*
+* Método que updatea la password del usuario, comparando la contraseña anterior introducida con la de la BD como método de seguridad Aplica valdiate a todas las contraseñas,
+* y compara que ambas contraseñas nuevas son iguales.
+* Se llamad desde el formulatio en usuarios.editPassword
+*/
+
+    public function updatePassword(Request $request, $id)
+    {
+        $user = Usuarios::findOrFail($id);
+        $request->validate([
+            'viejaPassword' => 'required|min:8|max:30|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/',
+            'passwordRepetir' => 'required|min:8|max:30|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/',
+            'password' => 'required|min:8|max:30|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/'
+        ]);
+        $user = Usuarios::where('uuid', $id)->first();
+        if (!Hash::check($request->viejaPassword, $user->password)) {
+        return redirect()->back()->with('error', 'La contraseña actual no es correcta.');
+        }
+
+        if (Hash::check($request->password, $user->password)) {
+            return redirect()->back()->with('error', 'La nueva contraseña no puede ser igual a la anterior.');
+        }
+
+        if ($request['password'] != $request['passwordRepetir']) {
+            return back()->withErrors([
+                'passwordRepetida' => 'Las contraseñas no coinciden.',
+            ]);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('usuarios.miPerfil')->with('success', 'Password actualizada exitosamente.');
+    }
 }

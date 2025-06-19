@@ -39,6 +39,8 @@ Route::get('/usuarios/{nombre}', [UsuariosController::class, 'show'])->name('usu
 
 // Edición de campos en perfil
 
+Route::put('/usuarios/{id}/updatePassword', [UsuariosController::class, 'updatePassword'])->name('usuarios.updatePassword');
+Route::get('/usuarios/{id}/editPassword', [UsuariosController::class, 'editPassword'])->name('usuarios.editPassword');
 Route::put('/usuarios/{id}/updateEmail', [UsuariosController::class, 'updateEmail'])->name('usuarios.updateEmail');
 Route::get('/usuarios/{id}/editDesc', [UsuariosController::class, 'editDesc'])->name('usuarios.editDesc');
 Route::put('/usuarios/{id}/updateDesc', [UsuariosController::class, 'updateDesc'])->name('usuarios.updateDesc');

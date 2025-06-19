@@ -26,12 +26,7 @@
 @if($usuarioYaInscrito && !$usuarioEsCreador && !$usuarioYaSolicitante)
     <form action="{{ route('notificaciones.abandonar') }}" method="POST" class="perfil-form">
         @csrf
-        <!-- Los datos que se envían: 
-             - notificado: el creador del anuncio 
-             - solicitante: el usuario autenticado 
-             - anuncio: el uuid del anuncio 
-             - tipo: 'solicitud_unirse'
-        -->
+
         <input type="hidden" name="notificado" value="{{ $anuncio->useruuid }}">
         <input type="hidden" name="solicitante" value="{{ auth()->user()->uuid }}">
         <input type="hidden" name="anuncio" value="{{ $anuncio->uuid }}">

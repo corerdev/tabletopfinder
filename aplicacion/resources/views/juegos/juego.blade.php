@@ -5,7 +5,7 @@
 @section('contenido')
 
 <div class="juego-detalle-container">
-    <!-- Nuevo div contenedor para título e imagen -->
+   
     <div class="juego-header-container">
         <div class="juego-header-content">
             <h1 class="juego-titulo">{{ $juego->nombre }}</h1>
@@ -13,9 +13,8 @@
         </div>
     </div>
 
-    <!-- Contenedor principal flex -->
     <div class="juego-info-wrapper">
-        <!-- Div de texto/información -->
+    
         <div class="juego-texto-container">
             <p class="juego-descripcion">{{ $juego->descripcion }}</p>
             
@@ -36,7 +35,6 @@
             @endif
         </div>
 
-        <!-- Contenedor de anuncios flotante -->
         <div class="juego-anuncios-flotante">
             <button class="anuncios-toggle-btn">
                 <span class="toggle-icon">►</span>

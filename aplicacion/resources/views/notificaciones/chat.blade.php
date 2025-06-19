@@ -7,17 +7,14 @@
 document.addEventListener("DOMContentLoaded", function() {
   const chatHistory = document.querySelector('.chat-history');
   
-  // Función para mantener el scroll al final
   function scrollToBottom() {
     if (chatHistory) {
       chatHistory.scrollTop = chatHistory.scrollHeight;
     }
   }
 
-  // Scroll al final al cargar la página
   scrollToBottom();
 
-  // Observador de mutaciones para detectar nuevos mensajes
   const observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.addedNodes.length) {
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Configurar el observador
   if (chatHistory) {
     observer.observe(chatHistory, {
       childList: true,
@@ -34,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // También scroll al final cuando la ventana cambia de tamaño
   window.addEventListener('resize', scrollToBottom);
 });
 </script>
