@@ -58,7 +58,7 @@
     <div class="lista-jugadores" style="display: flex; flex-wrap: wrap; gap: 15px;">
         @foreach($usuarios as $usuario)
             <div class="jugador" style="text-align: center;">
-                <a href="/tabletopFinder/aplicacion/public/usuarios/{{ $usuario->username }}" target="_blank">
+                <a href="{{ route('usuarios.show', $usuario->username) }}" target="_blank">
                     <img src="{{ asset($fondosAvatar[$usuario->avatar]->ruta) }}" alt="Avatar de {{ $usuario->username }}">
                     <div>{{ $usuario->username }}</div>
                 </a>
