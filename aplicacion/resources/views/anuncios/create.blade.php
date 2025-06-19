@@ -29,13 +29,12 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    
+   
     const tituloRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ\s]{1,35}$/;
     const plazasRegex = /^[1-9][0-9]?$|^99$/;
     const descripcionRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ,.\s]{1,500}$/;
     const desccortaRegex = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚñÑüÜ,.\s]{1,30}$/;
 
-    
     const errorMessages = {
         titulo: {
             empty: 'El título no puede estar vacío',
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    
     const tituloField = document.getElementById('titulo');
     const plazasField = document.getElementById('plazas');
     const descripcionField = document.getElementById('descripcion');
@@ -71,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.querySelector('.crearanuncio-btn');
     const form = document.querySelector('.crearanuncio-form');
 
-    
     const interactedFields = {
         titulo: false, 
         plazas: false, 
@@ -81,14 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
         juego: false
     };
 
-    
     function showError(field, message) {
         field.style.border = '2px solid #ff4444';
         const errorElement = document.createElement('div');
         errorElement.className = 'crearanuncio-error-message';
         errorElement.textContent = message;
         
-        /
         const existingError = field.nextElementSibling;
         if (existingError && existingError.classList.contains('crearanuncio-error-message')) {
             existingError.remove();
@@ -97,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
         field.parentNode.insertBefore(errorElement, field.nextSibling);
     }
 
-    
     function clearError(field) {
         field.style.border = '';
         const errorElement = field.nextElementSibling;
@@ -106,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    
     function validateField(field, regex, fieldName) {
         const value = field.value.trim();
         
@@ -126,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    
     function validateSelect(selectField, fieldName) {
         if (!interactedFields[fieldName]) return true;
         
@@ -139,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    
     function checkFormValidity() {
         let isFormValid = true;
         
@@ -176,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return isFormValid;
     }
 
-    
     function handleFirstInteraction(e, fieldName) {
         if (!interactedFields[fieldName]) {
             interactedFields[fieldName] = true;
@@ -184,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    
     if (tituloField) {
         tituloField.addEventListener('input', () => handleFirstInteraction(event, 'titulo'));
         tituloField.addEventListener('blur', () => checkFormValidity());
@@ -206,17 +195,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (fondoField) {
-        fondoField.addEventListener('change', () => handleFirstInteraction(event, 'fondo'));
+        fondoField.addEventListener('change', () => {
+            handleFirstInteraction(event, 'fondo');
+            checkFormValidity();
+        });
     }
     
     if (juegoField) {
-        juegoField.addEventListener('change', () => handleFirstInteraction(event, 'juego'));
+        juegoField.addEventListener('change', () => {
+            handleFirstInteraction(event, 'juego');
+            checkFormValidity();
+        });
     }
 
-    
+    if (fondoField) {
+        fondoField.addEventListener('change', function() {
+            const imagenSeleccionada = this.options[this.selectedIndex].getAttribute('ruta');
+            const preview = document.getElementById('crearanuncio-imagen-preview');
+            if (preview && imagenSeleccionada) {
+                preview.src = imagenSeleccionada;
+            }
+        });
+    }
+
     checkFormValidity();
 
-    
     if (form) {
         form.addEventListener('submit', function(e) {
             Object.keys(interactedFields).forEach(key => interactedFields[key] = true);
@@ -224,17 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!checkFormValidity()) {
                 e.preventDefault();
                 alert('Por favor, completa correctamente todos los campos antes de enviar.');
-            }
-        });
-    }
-
-    
-    if (fondoField) {
-        fondoField.addEventListener('change', function() {
-            const imagenSeleccionada = this.options[this.selectedIndex].getAttribute('ruta');
-            const preview = document.getElementById('crearanuncio-imagen-preview');
-            if (preview && imagenSeleccionada) {
-                preview.src = imagenSeleccionada;
             }
         });
     }
