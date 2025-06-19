@@ -39,60 +39,79 @@ class FondosController extends Controller
 * Se llama cuando en la página de administrador para registrar fondos mandamos el formulario.
 */
     public function upload(Request $request)
-    {
-        $request->validate([
-            'tipo'   => 'required|in:avatar,fondo',
-            'nombre' => [
-                'required',
-                'string',
-                'unique:fondos,nombre',
-                'regex:/^[A-Za-z0-9\s]+$/'
-            ],
-            'imagen' => 'required|image|mimes:jpg,jpeg,webp|max:2048'
-        ]);
+{
+    $request->validate([
+        'tipo'   => 'required|in:avatar,fondo',
+        'nombre' => [
+            'required',
+            'string',
+            'unique:fondos,nombre',
+            'regex:/^[A-Za-z0-9\s]+$/',
+            'max:10'
+        ],
+        'imagen' => 'required|image|mimes:jpg,jpeg,webp|max:2048'
+    ]);
 
-        $image = $request->file('imagen');
+    $image = $request->file('imagen');
 
-        $dimensions = getimagesize($image);
-        if (!$dimensions) {
-            return back()->withErrors(['imagen' => 'No se pudo obtener la información de la imagen.']);
-        }
-        $width  = $dimensions[0];
-        $height = $dimensions[1];
-
-        if ($request->tipo === 'avatar') {
-            if ($width > 256 || $height > 256) {
-                return back()->withErrors(['imagen' => 'El avatar no puede exceder de 256x256 píxeles.']);
-            }
-        } elseif ($request->tipo === 'fondo') {
-            if ($width > 1000 || $height > 450) {
-                return back()->withErrors(['imagen' => 'El fondo no puede exceder de 1000x450 píxeles.']);
-            }
-        }
-
-        $destinationPath = public_path('images/fondos');
-        if (!is_dir($destinationPath)) {
-            mkdir($destinationPath, 0755, true);
-        }
-
-        $maxCode = DB::table('fondos')->max('code');
-        $nextCode = $maxCode ? $maxCode + 1 : 1;
-
-        $extension = $image->getClientOriginalExtension();
-        $fileName  = 'imagen' . $nextCode . '.' . $extension;
-
-        if (file_exists($destinationPath . '/' . $fileName)) {
-            return back()->withErrors(['nombre' => 'Ya existe un archivo con ese nombre (error interno).']);
-        }
-
-        $image->move($destinationPath, $fileName);
-
-        DB::table('fondos')->insert([
-            'nombre' => $request->nombre,
-            'ruta'   => 'images/fondos/' . $fileName,
-            'tipo'   => $request->tipo
-        ]);
-
-        return redirect()->back()->with('success', 'Imagen subida correctamente.');
+    
+    $dimensions = getimagesize($image);
+    if (!$dimensions) {
+        return back()->withErrors(['imagen' => 'No se pudo obtener la información de la imagen.']);
     }
+    
+    $width  = $dimensions[0];
+    $height = $dimensions[1];
+
+    if ($request->tipo === 'avatar') {
+        if ($width > 256 || $height > 256) {
+            return back()->withErrors(['imagen' => 'El avatar no puede exceder de 256x256 píxeles.']);
+        }
+    } elseif ($request->tipo === 'fondo') {
+        if ($width > 1000 || $height > 450) {
+            return back()->withErrors(['imagen' => 'El fondo no puede exceder de 1000x450 píxeles.']);
+        }
+    }
+
+    $destinationPath = public_path('images/fondos');
+    if (!is_dir($destinationPath)) {
+        mkdir($destinationPath, 0755, true);
+    }
+
+    
+    $existingFiles = glob($destinationPath.'/imagen*.{jpg,jpeg,webp}', GLOB_BRACE);
+    $nextNumber = 1;
+    
+    if (!empty($existingFiles)) {
+        
+        $numbers = [];
+        foreach ($existingFiles as $file) {
+            if (preg_match('/imagen(\d+)\./', $file, $matches)) {
+                $numbers[] = (int)$matches[1];
+            }
+        }
+        
+        if (!empty($numbers)) {
+            $nextNumber = max($numbers) + 1;
+        }
+    }
+
+    $extension = $image->getClientOriginalExtension();
+    $fileName = 'imagen'.$nextNumber.'.'.$extension;
+
+    if (file_exists($destinationPath.'/'.$fileName)) {
+        return back()->withErrors(['nombre' => 'Ya existe un archivo con ese nombre (error interno).']);
+    }
+
+    $image->move($destinationPath, $fileName);
+
+    DB::table('fondos')->insert([
+        'nombre' => $request->nombre,
+        'ruta'   => 'images/fondos/'.$fileName,
+        'tipo'   => $request->tipo,
+        'code'   => $nextNumber 
+    ]);
+
+    return redirect()->back()->with('success', 'Imagen subida correctamente.');
+}
 }
